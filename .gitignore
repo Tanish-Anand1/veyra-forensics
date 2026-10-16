@@ -1,0 +1,17 @@
+node_modules/
+dist/
+artifacts/
+test-results/
+playwright-report/
+output/
+tmp/
+.vercel/
+.impeccable/
+.env
+.env.*
+!.env.example
+*.log
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

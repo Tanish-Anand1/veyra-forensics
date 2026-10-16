@@ -1,0 +1,1221 @@
+@font-face {
+  font-family: "VEYRA Display Fallback";
+  src: local("Arial");
+  size-adjust: 75%;
+  ascent-override: 100%;
+  descent-override: 15%;
+  line-gap-override: 0%;
+}
+:root {
+  font-family: "IBM Plex Sans", Arial, sans-serif;
+  --display:
+    "Barlow Condensed", "VEYRA Display Fallback", "Arial Narrow", sans-serif;
+  --serif:
+    "Barlow Condensed", "VEYRA Display Fallback", "Arial Narrow", sans-serif;
+  --wordmark: "Archivo Black", Arial, sans-serif;
+  --mono: "IBM Plex Mono", monospace;
+  --base: #090b0c;
+  --surface: #121619;
+  --ink: #edece6;
+  --muted: #b0b5b8;
+  --line: #353b3e;
+  --red: #ed8377;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  background: var(--base);
+}
+body {
+  background: var(--base);
+  font-family: "IBM Plex Sans", Arial, sans-serif;
+}
+button,
+input,
+select,
+textarea {
+  font-family: "IBM Plex Sans", Arial, sans-serif;
+}
+.primary-button,
+.button,
+.text-link,
+.solid-button,
+.replay-button,
+.source-switch,
+.forensic-tabs {
+  font-family: "IBM Plex Sans", Arial, sans-serif;
+  letter-spacing: 0;
+}
+.button,
+.text-link {
+  font-size: 14px;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid #efb0a4;
+  outline-offset: 5px;
+}
+em {
+  font-style: normal;
+}
+p.mono {
+  font-family: "IBM Plex Sans", Arial, sans-serif;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+strong,
+b {
+  font-weight: 600;
+}
+.veyra-wordmark {
+  display: inline-block;
+  font-family: var(--wordmark);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+.veyra-wordmark > span {
+  display: inline-flex;
+  white-space: nowrap;
+}
+.veyra-wordmark > span > span:nth-child(1) {
+  margin-right: -0.045em;
+}
+.veyra-wordmark > span > span:nth-child(2) {
+  margin-right: -0.018em;
+}
+.veyra-wordmark > span > span:nth-child(3) {
+  margin-right: -0.045em;
+}
+.veyra-wordmark > span > span:nth-child(4) {
+  margin-right: -0.015em;
+}
+body .brand {
+  font-family: var(--wordmark);
+  font-weight: 400;
+  font-size: 31px;
+  letter-spacing: 0;
+  line-height: 1;
+  min-height: 44px;
+}
+.site-header nav {
+  font-size: 14px;
+  gap: 26px;
+}
+.account-nav {
+  font-size: 14px;
+}
+.nav-active,
+.nav-cta {
+  gap: 24px;
+  border-color: var(--line);
+}
+.section-index,
+.art-caption,
+.footer-note,
+.hero-registration,
+.hero-bottom,
+.auth-eyebrow,
+.graph-orientation,
+.graph-stage-caption {
+  display: none;
+}
+.section-intro > .section-index,
+.region-heading > .mono,
+.intake-masthead > .mono,
+.forensic-heading > div > .mono {
+  display: none;
+}
+.section-intro h2,
+.launch-section h2,
+.information h1,
+.history-heading h1 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: -0.025em;
+  line-height: 0.98;
+}
+.section-intro h2 em,
+.launch-section h2 em,
+.information h1 em,
+.history-heading h1 em {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: inherit;
+}
+.section-intro h2 {
+  font-size: clamp(40px, 4.5vw, 76px);
+}
+.section-intro p,
+.information p,
+.information li {
+  font-size: 16px;
+  line-height: 1.65;
+}
+.information h1 {
+  font-size: clamp(56px, 6.5vw, 104px);
+}
+.information > .mono {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+body .auth-page {
+  background: #090b0c;
+  position: relative;
+  min-height: 100svh;
+  isolation: isolate;
+}
+body .auth-header {
+  height: 104px;
+  padding: 24px 5vw;
+  flex-shrink: 0;
+}
+body .auth-header > a:last-child {
+  color: var(--ink);
+  font-size: 15px;
+}
+body .auth-composition {
+  position: static;
+  width: 100%;
+  margin: 0;
+  min-height: 0;
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  padding: 35px 5vw 35px;
+}
+body .auth-sculpture {
+  width: auto;
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  min-height: 100svh;
+  z-index: -1;
+  pointer-events: none;
+}
+body .auth-sculpture .artwork {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+body .auth-sculpture .static-mechanism {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  mask-image: none;
+  mix-blend-mode: normal;
+}
+body .auth-entry {
+  animation: none;
+  width: min(450px, 40vw);
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+body .auth-entry h1 {
+  font-family: var(--display);
+  font-size: clamp(65px, 6.5vw, 112px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 0.92;
+  margin: 0 0 25px;
+  text-wrap: nowrap;
+}
+body .auth-intro {
+  font-size: 17px;
+  line-height: 1.55;
+  max-width: 370px;
+  margin: 0 0 32px;
+}
+.provider-stack {
+  gap: 12px;
+}
+body .provider-button {
+  font-size: 16px;
+  font-weight: 500;
+  min-height: 58px;
+  background: #131719;
+  border-color: #62686b;
+  padding: 15px 20px;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease;
+}
+body .provider-google {
+  background: var(--ink);
+  color: #111416;
+  border-color: var(--ink);
+}
+body .provider-button > span:last-child {
+  margin-left: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+body .provider-button:disabled {
+  opacity: 0.72;
+  cursor: not-allowed;
+}
+body .auth-status {
+  min-height: 88px;
+  font-size: 14px;
+  line-height: 1.55;
+  padding: 16px 0 8px;
+}
+body .auth-switch {
+  font-size: 15px;
+  padding-top: 16px;
+  margin: 0;
+  border: 0;
+}
+body .auth-switch a {
+  margin-left: 4px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+body .auth-legal {
+  font-size: 14px;
+  line-height: 1.55;
+  max-width: 420px;
+  margin-top: 16px;
+}
+body .auth-footer {
+  padding: 22px 5vw 28px;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+.auth-footer > div {
+  display: flex;
+  gap: 25px;
+}
+.auth-footer a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.is-opening .auth-entry,
+.is-opening .auth-footer,
+.is-opening .auth-header > a:last-child {
+  opacity: 0;
+}
+.is-opening .auth-header .brand {
+  opacity: 0;
+}
+.is-opening[data-film-ready="false"] .auth-sculpture {
+  opacity: 0.2;
+}
+.is-opening[data-film-ready="true"] .auth-sculpture {
+  animation: sculpture-emerge 1.2s ease-out;
+}
+@keyframes sculpture-emerge {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.opening-film {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  overflow: clip;
+}
+.opening-wordmark {
+  position: absolute;
+  left: 5vw;
+  top: 33svh;
+  font-size: clamp(110px, 18vw, 345px);
+  line-height: 1;
+  transform-origin: left top;
+  visibility: hidden;
+  will-change: transform, opacity;
+}
+.opening-tagline {
+  position: absolute;
+  left: 5.3vw;
+  top: calc(33svh + clamp(110px, 18vw, 345px) + 17px);
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(26px, 2.5vw, 44px);
+  line-height: 1;
+  letter-spacing: 0.025em;
+  visibility: hidden;
+}
+body .skip-intro {
+  position: absolute;
+  inset: 24px 5vw auto auto;
+  min-height: 44px;
+  pointer-events: auto;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 15px;
+  color: var(--ink);
+  padding: 10px 0 10px 18px;
+  border: 0;
+}
+body:has(.is-opening) {
+  overflow: hidden;
+}
+.sculpture-opening .static-mechanism {
+  animation: still-passage 7s var(--ease-in-out) both;
+}
+@keyframes still-passage {
+  0% {
+    opacity: 0.15;
+    transform: scale(1.8) translate(-12%, 6%);
+  }
+  22% {
+    opacity: 1;
+    transform: scale(1.55) translate(-8%, 2%);
+  }
+  58% {
+    transform: scale(2.4) translate(-18%, 8%);
+  }
+  84%,
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.public-product {
+  overflow: clip;
+}
+.product-hero {
+  min-height: min(850px, calc(100svh - 88px));
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 55px 5vw 70px;
+  isolation: isolate;
+}
+.product-sculpture {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.product-sculpture .artwork {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.product-introduction {
+  max-width: 760px;
+}
+.product-wordmark {
+  font-size: clamp(62px, 7.2vw, 138px);
+  margin: 0 0 24px;
+}
+.product-introduction h1 {
+  font-family: var(--display);
+  font-size: clamp(62px, 7.5vw, 142px);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.025em;
+  margin: 0 0 30px;
+}
+.product-introduction p {
+  max-width: 440px;
+  font-size: 19px;
+  line-height: 1.55;
+  margin: 0 0 34px;
+}
+.product-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+.product-actions .button {
+  font-size: 15px;
+  padding: 18px 25px;
+}
+.product-actions .text-link {
+  font-size: 15px;
+}
+.product-workflow,
+.product-conclusion {
+  margin: 0 5vw;
+  padding: 65px 0;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8vw;
+}
+.product-workflow h2,
+.product-conclusion h2 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(46px, 4.4vw, 78px);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.product-workflow p,
+.product-conclusion p {
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 580px;
+}
+.product-workflow ol {
+  list-style: none;
+  counter-reset: workflow;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  padding: 15px 0;
+}
+.product-workflow li {
+  counter-increment: workflow;
+  font-size: 16px;
+}
+.product-workflow li::before {
+  content: counter(workflow, decimal-leading-zero) " ";
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--red);
+}
+.case-section {
+  margin-inline: 5vw;
+}
+.case-section .section-intro {
+  grid-template-columns: 1fr 1fr;
+}
+.case-section .replay-note {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.case-graph {
+  display: flex;
+  flex-direction: column;
+}
+.case-graph > .graph-window {
+  height: auto;
+  flex: 1;
+  min-height: 0;
+}
+.case-assessment {
+  flex-shrink: 0;
+}
+.case-assessment p {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.case-footnote {
+  font-size: 14px;
+}
+body .import-page {
+  padding-top: 35px;
+  max-width: 1680px;
+}
+body .intake-masthead {
+  padding: 0 0 28px;
+  gap: 0 60px;
+}
+body .intake-masthead h1 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(58px, 6vw, 96px);
+  letter-spacing: -0.025em;
+  line-height: 0.94;
+}
+body .intake-masthead h1 em {
+  font-family: inherit;
+  font-weight: inherit;
+  font-style: normal;
+}
+body .intake-masthead > p {
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 470px;
+}
+body .intake-stages {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 15px;
+  letter-spacing: 0;
+}
+body .intake-stages li {
+  padding: 17px 0;
+}
+body .intake-tools h2 {
+  font-size: 27px;
+  letter-spacing: -0.035em;
+}
+body .source-switch button {
+  font-size: 15px;
+}
+body .intake-field {
+  padding-top: 24px;
+}
+body .file-intake {
+  min-height: 240px;
+  padding-block: 38px;
+}
+body .file-intake h3 {
+  font-size: 27px;
+}
+body .file-intake p,
+body .screenshot-order,
+body .screenshot-filename {
+  font-size: 14px;
+  line-height: 1.6;
+}
+body .intake-privacy,
+body .intake-footnote p,
+body .small-copy {
+  font-size: 14px;
+  line-height: 1.65;
+}
+body .intake-footnote > span {
+  display: none;
+}
+body .intake-footnote {
+  grid-template-columns: 1fr;
+  padding: 23px 0;
+}
+body .intake-tools .mono,
+body .review-format,
+body .review-pagination,
+body .message-review-actions button,
+body .review-message-meta,
+body .import-feedback {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 14px;
+}
+body .review-message-fields input,
+body .review-message-fields textarea {
+  font-size: 15px;
+  line-height: 1.6;
+}
+body .import-feedback > span:not(.stage-mark) {
+  min-width: 0;
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+body .import-feedback > button {
+  flex-shrink: 0;
+}
+body .review-message-fields label,
+body .message-uncertainty,
+body .message-uncertainty button {
+  font-size: 14px;
+}
+body .source-reference,
+body .message-review-actions > .mono {
+  font-family: var(--mono);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+body .redaction-workbench h2,
+body .analysis-intake h2 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 45px;
+  letter-spacing: -0.02em;
+}
+body .redaction-workbench p,
+body .analysis-intake p,
+body .intake-consent,
+body .scope-controls label,
+body .import-method label {
+  font-size: 14px;
+  line-height: 1.6;
+}
+body .analysis-confirmation .button,
+body .intake-field .button {
+  font-size: 15px;
+}
+body .coverage-readout strong {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 36px;
+  letter-spacing: -0.015em;
+}
+body .coverage-readout strong span {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 15px;
+}
+
+body .forensic-main {
+  max-width: 1920px;
+  padding: 20px 3vw 40px;
+}
+body .forensic-heading {
+  align-items: center;
+  padding-bottom: 12px;
+  gap: 20px;
+}
+body .forensic-heading h1 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(40px, 3.2vw, 54px);
+  letter-spacing: -0.025em;
+  line-height: 1;
+  margin: 0;
+}
+body .forensic-heading h1 em {
+  font-family: inherit;
+  font-weight: inherit;
+  font-style: normal;
+}
+body .forensic-method {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  max-width: 250px;
+  padding: 0;
+  text-transform: none;
+}
+body .forensic-coverage {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 6px 0;
+  gap: 9px 24px;
+}
+body .forensic-coverage details {
+  margin: 0 0 0 auto;
+}
+body .forensic-coverage details[open] {
+  flex-basis: 100%;
+}
+body .forensic-coverage summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+body .forensic-coverage summary::before {
+  content: "▸";
+}
+body .forensic-coverage details[open] summary::before {
+  content: "▾";
+}
+body .forensic-coverage > p {
+  flex-basis: 100%;
+}
+body .forensic-coverage > strong {
+  font-size: 17px;
+}
+body .forensic-coverage > span,
+body .forensic-coverage p,
+body .forensic-coverage summary {
+  font-size: 14px;
+}
+body .forensic-toolbar {
+  padding-top: 12px;
+}
+body .forensic-toolbar button,
+body .forensic-toolbar a {
+  font-size: 14px;
+}
+body .forensic-notice {
+  min-height: 32px;
+  padding: 4px 0;
+  font-size: 14px;
+}
+body .forensic-replay {
+  padding: 3px 0;
+  font-size: 14px;
+}
+body .forensic-replay button {
+  font-size: 14px;
+}
+body .forensic-replay > span {
+  font-size: 14px;
+}
+body .forensic-layout {
+  grid-template-columns: 280px minmax(0, 1fr) 330px;
+  margin-top: 18px;
+}
+body .forensic-toolbar .forensic-assumptions {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+body .forensic-toolbar .forensic-assumptions summary {
+  font-size: 14px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+body .forensic-toolbar .forensic-assumptions[open] {
+  flex-basis: 100%;
+}
+body .forensic-layout > section {
+  height: 740px;
+}
+body .forensic-graph .trust-graph {
+  height: 640px;
+  min-height: 640px;
+}
+body .region-heading h2 {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+body .panel-bar,
+body .graph-heading,
+body .trace-heading {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: 1.5;
+}
+body .graph-heading {
+  padding: 18px 20px;
+}
+body .graph-sub {
+  display: none;
+}
+body .graph-controls button,
+body .graph-controls span {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 14px;
+}
+body .graph-legend {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 14px;
+  gap: 15px;
+}
+body .node-label {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+body .node-classification {
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 0;
+}
+body .trace-text {
+  font-size: 15px;
+  line-height: 1.6;
+}
+body .trace-meta {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+body .trace-meta .mono,
+body .trace-source {
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+body .trace-meta strong {
+  font-size: 14px;
+}
+body .trace-source {
+  color: var(--muted);
+}
+body .assessment-block h2,
+body .assessment-block h3 {
+  font-family: var(--display);
+  font-size: 35px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+body .assessment-block p,
+body .forensic-summary p,
+body .inspection-body p,
+body .inspection-body blockquote {
+  font-size: 15px;
+  line-height: 1.6;
+}
+body .assessment-block > small,
+body .inspection-limit {
+  font-size: 14px;
+  line-height: 1.55;
+}
+body .forensic-tabs button,
+body .report-tabs button {
+  font-size: 15px;
+}
+body .forensic-summary h3,
+body .inspection-body h3 {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 22px;
+  letter-spacing: -0.025em;
+  font-weight: 500;
+}
+body .inspection-body > .mono,
+body .inspection-reason > .mono,
+body .protective-action > .mono {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+body .inspection-kicker {
+  overflow-wrap: anywhere;
+}
+body .counterfactual {
+  padding: 24px;
+}
+body .counterfactual h3 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 40px;
+  letter-spacing: -0.025em;
+}
+body .counterfactual h3 em {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: inherit;
+}
+.forensic-assumptions {
+  border-bottom: 1px solid var(--line);
+  padding: 10px 0;
+}
+.forensic-assumptions summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+}
+.forensic-assumptions .counterfactual {
+  padding: 4px 0 15px;
+  max-width: 780px;
+}
+.forensic-assumptions label {
+  display: block;
+  font-size: 14px;
+  margin: 0 0 10px;
+}
+.forensic-assumptions select {
+  min-height: 48px;
+  max-width: 100%;
+  width: 480px;
+  padding: 10px 12px;
+  border: 1px solid #6a7176;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 15px;
+}
+.forensic-assumptions p {
+  font-size: 14px;
+  line-height: 1.55;
+}
+.forensic-assumptions[open] {
+  padding-bottom: 6px;
+}
+body .save-panel {
+  left: 0;
+  right: auto;
+}
+body .save-panel h2 {
+  font-family: var(--display);
+  font-size: 36px;
+  font-weight: 600;
+}
+body .save-panel .save-consent,
+body .save-panel > label,
+body .save-panel > p {
+  font-size: 14px;
+}
+body .save-panel > input {
+  font-size: 16px;
+}
+
+@media (max-width: 1250px) and (min-width: 821px) {
+  body .account-nav {
+    min-width: 150px;
+  }
+  .site-header nav {
+    gap: 18px;
+  }
+}
+@media (max-width: 1200px) {
+  body .forensic-layout {
+    grid-template-columns: 250px minmax(0, 1fr);
+  }
+  body .forensic-layout > .forensic-report {
+    grid-column: 1/-1;
+    height: auto;
+    max-height: none;
+  }
+}
+@media (max-width: 820px) {
+  body .brand {
+    font-size: 28px;
+  }
+  body .site-header > nav {
+    font-size: 14px;
+  }
+  body .site-header .account-nav {
+    min-width: 150px;
+    width: 150px;
+    font-size: 14px;
+  }
+  body .auth-header {
+    height: 88px;
+    padding: 20px 24px;
+  }
+  body .auth-composition {
+    padding: 30px 24px;
+  }
+  body .auth-entry {
+    width: min(410px, 52vw);
+  }
+  body .auth-entry h1 {
+    font-size: clamp(58px, 8vw, 78px);
+  }
+  body .auth-intro {
+    font-size: 16px;
+  }
+  body .auth-footer {
+    padding-inline: 24px;
+  }
+  .product-hero {
+    min-height: 740px;
+  }
+  .product-introduction {
+    max-width: 500px;
+  }
+  .product-workflow,
+  .product-conclusion {
+    gap: 35px;
+  }
+  body .intake-masthead > p {
+    font-size: 16px;
+  }
+  body .intake-stages {
+    font-size: 14px;
+  }
+  body .source-switch {
+    gap: 18px;
+  }
+  body .source-switch button {
+    font-size: 14px;
+  }
+  body .forensic-heading {
+    gap: 16px;
+  }
+  body .forensic-layout {
+    grid-template-columns: 1fr;
+  }
+  body .forensic-layout > section {
+    height: auto;
+    max-height: none;
+  }
+  body .forensic-layout > .forensic-transcript {
+    max-height: 440px !important;
+  }
+  body .forensic-layout > .forensic-graph {
+    min-height: 740px;
+  }
+  body .forensic-graph .trust-graph {
+    height: 660px;
+  }
+  body .forensic-toolbar .save-panel {
+    position: fixed;
+    inset: auto 20px 20px;
+  }
+}
+@media (max-width: 600px) {
+  body .auth-header {
+    height: 80px;
+    padding: 18px 20px;
+  }
+  body .auth-header > a:last-child {
+    font-size: 14px;
+  }
+  body .auth-header .brand {
+    font-size: 24px;
+  }
+  body .site-header .nav-cta {
+    font-size: 14px;
+  }
+  body .site-header .account-nav {
+    font-size: 14px;
+  }
+  body .auth-composition {
+    padding: 170px 20px 25px;
+    align-items: start;
+  }
+  body .auth-sculpture {
+    inset: 75px -30px auto 0;
+    min-height: 0;
+    height: 160px;
+    opacity: 1;
+    mask-image: linear-gradient(#000 70%, transparent);
+  }
+  body .auth-sculpture .static-mechanism {
+    object-fit: cover;
+    object-position: 85% center;
+  }
+  body .auth-entry {
+    width: 100%;
+    max-width: 430px;
+  }
+  body .auth-entry h1 {
+    font-size: clamp(52px, 16vw, 70px);
+    margin-bottom: 20px;
+  }
+  body .auth-intro {
+    font-size: 16px;
+    max-width: 340px;
+    margin-bottom: 27px;
+  }
+  body .provider-button {
+    min-height: 56px;
+  }
+  body .auth-status {
+    min-height: 90px;
+  }
+  body .auth-footer {
+    padding: 10px 20px 20px;
+    font-size: 14px;
+    flex-wrap: wrap;
+    gap: 4px 22px;
+  }
+  .auth-footer > div {
+    gap: 20px;
+  }
+  .auth-page.is-opening .auth-sculpture {
+    mask-image: none;
+  }
+  .opening-wordmark {
+    font-size: 22vw;
+    left: 5vw;
+    top: 35svh;
+  }
+  .opening-tagline {
+    left: 5.7vw;
+    top: calc(35svh + 22vw + 22px);
+    font-size: 26px;
+  }
+  body .skip-intro {
+    inset: 18px 20px auto auto;
+  }
+  .product-hero {
+    padding: 40px 20px 45px;
+    min-height: 720px;
+    align-items: flex-end;
+  }
+  .product-sculpture {
+    inset: -10px -40px auto 0;
+    height: 280px;
+    opacity: 1;
+    mask-image: linear-gradient(#000 65%, transparent);
+  }
+  .product-sculpture .static-mechanism {
+    object-fit: cover;
+    object-position: 70% center;
+  }
+  .product-introduction h1 {
+    font-size: clamp(56px, 18vw, 76px);
+  }
+  .product-wordmark {
+    font-size: 60px;
+    margin-bottom: 20px;
+  }
+  .product-introduction p {
+    font-size: 17px;
+    max-width: 350px;
+  }
+  .product-actions {
+    gap: 18px;
+  }
+  .product-workflow,
+  .product-conclusion {
+    margin-inline: 20px;
+    padding-block: 45px;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .product-workflow h2,
+  .product-conclusion h2 {
+    font-size: 48px;
+  }
+  .case-section {
+    margin-inline: 20px;
+  }
+  .case-section .section-intro {
+    grid-template-columns: 1fr;
+  }
+  body .intake-masthead {
+    gap: 24px;
+  }
+  body .intake-masthead h1 {
+    font-size: clamp(44px, 14vw, 62px);
+    max-width: 100%;
+  }
+  body .intake-tools h2 {
+    font-size: 25px;
+  }
+  body .file-intake h3 {
+    font-size: 25px;
+  }
+  body .intake-bracket {
+    font-size: 80px;
+  }
+  body .source-switch {
+    gap: 17px;
+  }
+  body .source-switch button {
+    font-size: 14px;
+  }
+  body .intake-stages {
+    font-size: 14px;
+  }
+  body .forensic-main {
+    padding-inline: 20px;
+  }
+  body .forensic-heading h1 {
+    font-size: 48px;
+  }
+  body .forensic-heading {
+    align-items: flex-start;
+  }
+  body .forensic-toolbar > div {
+    gap: 12px 20px;
+  }
+  body .forensic-method {
+    font-size: 14px;
+  }
+  body .forensic-coverage > strong {
+    font-size: 16px;
+  }
+  body .forensic-graph .trust-graph {
+    height: 740px;
+  }
+  body .graph-controls button {
+    font-size: 14px;
+  }
+  body .save-panel {
+    position: fixed;
+    inset: auto 20px 20px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sculpture-opening .static-mechanism {
+    animation: none;
+  }
+}
