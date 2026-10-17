@@ -6,7 +6,7 @@ import type { Request, Response, Express } from "express";
 import { createHmac } from "node:crypto";
 import type pg from "pg";
 import { databasePool, privateAdapter } from "./database.js";
-import { profileImage, safeDestination } from "../shared/auth.js";
+import { profileImage, signInDestination } from "../shared/auth.js";
 
 export type AuthRuntime = {
   pool?: pg.Pool;
@@ -159,18 +159,8 @@ export function createAuth(
     },
     pages: { signIn: "/login", error: "/login" },
     callbacks: {
-      async redirect({ url }) {
-        try {
-          const target = new URL(url, origin);
-          return (
-            origin +
-            (target.origin === origin
-              ? safeDestination(target.pathname + target.search)
-              : "/history")
-          );
-        } catch {
-          return origin + "/history";
-        }
+      async redirect() {
+        return origin + signInDestination;
       },
       async session({ session, user }) {
         return {

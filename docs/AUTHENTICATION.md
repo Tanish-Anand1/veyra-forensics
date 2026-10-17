@@ -51,7 +51,7 @@ Remote runtime connection URLs are normalized to `sslmode=verify-full`; certific
 ## Security and data behavior
 
 - Seven-day opaque database sessions; the library renews sessions and cookies after a day of activity. Cookies are HttpOnly, SameSite=Lax, path `/`, with Secure and the `__Secure-` prefix on HTTPS. Tokens are SHA-256 hashed before database storage; logout deletes the current session. Provider access, refresh and ID tokens are never retained; a database constraint reinforces this.
-- Auth.js provides OAuth state, PKCE and CSRF checks. Authentication POSTs additionally require the configured exact Origin. Host and forwarded headers are pinned to `AUTH_URL`; only product destinations (`/analyze`, `/investigate/import`, `/history`, valid investigation paths) are allowed after login. External and malformed redirects fall back to `/history`.
+- Auth.js provides OAuth state, PKCE and CSRF checks. Authentication POSTs additionally require the configured exact Origin. Host and forwarded headers are pinned to `AUTH_URL`. Every successful sign-in opens the Product page at `/about`; callback parameters and previously remembered destinations cannot override it. External redirects are never followed.
 - Users are identified by provider + provider account ID. Google email is retained only when `email_verified === true`; GitHub email is not collected. Missing/unverified email is nullable. Automatic email-based account linking is disabled. Use the original provider to return to the same workspace. There is no account-linking UI in this release.
 - The browser never exchanges authorization codes or receives provider tokens. Server diagnostics include error categories only, never token/profile/cause objects. Profile images are restricted to Google/GitHub avatar hosts and sent with no referrer; the CSP permits those hosts only for images.
 - `/api/investigations` requires a valid, unexpired database session for every request. Ownership comes from that session, never a request field. Every individual SELECT and DELETE includes both investigation ID and owner ID. Another user's or nonexistent ID returns the same 404. Title updates also enforce ownership; arbitrary report updates are not supported.
@@ -78,7 +78,7 @@ node scripts/check-serverless.mjs
 
 Real-provider acceptance, only after configuration:
 
-1. In a fresh browser, sign up with Google, confirm the provider consent scope and return to the intended destination. Refresh, save an analysis, revisit it, delete it and log out. Sign in again and confirm the same workspace.
+1. In a fresh browser, sign up with Google, confirm the provider consent scope and return to the Product page. Refresh, open an investigation, save an analysis, revisit it, delete it and log out. Sign in again and confirm the Product page and the same account.
 2. Repeat with GitHub, including an account with no public email. Confirm no repository/private-email permission request.
 3. Cancel each provider's authorization; confirm a useful retry screen. Test an expired session, provider outage/misconfiguration and rejected redirect. The public demonstration must remain available.
 4. Use two separate users/browser profiles. Confirm one cannot list, fetch or delete the other's investigation, including direct API requests with a known ID.

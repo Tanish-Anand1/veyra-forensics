@@ -9,6 +9,7 @@ import { useAuth } from "./session";
 import { Header, Footer } from "./Layout";
 import { navigate, useAppNavigation } from "./navigation";
 import { SavedInvestigationPage } from "./Investigations";
+import { signInDestination } from "../shared/auth";
 const ForensicsImport = lazy(() => import("./ForensicsImport"));
 
 export default function App() {
@@ -16,10 +17,7 @@ export default function App() {
   const path = route.pathname;
   const auth = useAuth();
   const finishOpening = useCallback(() => {
-    const target =
-      auth.user && !auth.error
-        ? "/investigate/import"
-        : "/login?next=%2Finvestigate%2Fimport";
+    const target = auth.user && !auth.error ? signInDestination : "/login";
     navigate(target, { replace: true });
   }, [auth.user, auth.error]);
   useEffect(() => {

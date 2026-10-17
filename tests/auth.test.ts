@@ -12,14 +12,19 @@ import Google from "@auth/express/providers/google";
 import GitHub from "@auth/express/providers/github";
 import { createAuth, googleProfile, githubProfile } from "../server/auth";
 import { createApp } from "../server/app";
-import { safeDestination, profileImage } from "../shared/auth";
+import { profileImage } from "../shared/auth";
 import { parseConversation } from "../shared/import";
 import { aggregateReport, selectMessages } from "../shared/selection";
 import { buildAnalysis } from "../shared/engine";
 import { androidExport } from "./forensics-fixtures";
 
-test("redirect and profile boundaries reject unsafe inputs", () => {
+test("sign-in always returns to the canonical Product page and rejects external redirects", async () => {
+  const origin = "https://veyra-forensics.vercel.app";
+  const auth = createAuth({ origin });
   for (const value of [
+    "/about",
+    "/analyze?resume=1",
+    "/history",
     "https://evil.test",
     "//evil.test",
     "/\\evil.test",
@@ -28,8 +33,10 @@ test("redirect and profile boundaries reject unsafe inputs", () => {
     "%2f%2fevil.test",
     "/analyze\r\nLocation:evil",
   ])
-    assert.equal(safeDestination(value), "/history");
-  assert.equal(safeDestination("/analyze?resume=1"), "/analyze?resume=1");
+    assert.equal(
+      await auth.config.callbacks!.redirect!({ url: value, baseUrl: origin }),
+      origin + "/about",
+    );
   assert.equal(profileImage("https://evil.test/pixel"), null);
   assert.equal(
     profileImage("https://avatars.githubusercontent.com@evil.test/x"),
@@ -251,7 +258,7 @@ test("Auth.js Google OIDC and GitHub code flows, sessions, ownership, expiry and
     const google = await start(alice, "google");
     const complete = await finish(alice, "google", google);
     assert.equal(complete.status, 302);
-    assert.equal(complete.headers.get("location"), origin + "/analyze");
+    assert.equal(complete.headers.get("location"), origin + "/about");
     assert.match(complete.headers.get("set-cookie") || "", /HttpOnly/);
     assert.match(complete.headers.get("set-cookie") || "", /SameSite=Lax/i);
     const account = await (await alice.request("/api/account")).json();
@@ -303,7 +310,7 @@ test("Auth.js Google OIDC and GitHub code flows, sessions, ownership, expiry and
     assert.equal(github.searchParams.get("scope"), "");
     assert.equal(
       (await finish(bob, "github", github)).headers.get("location"),
-      origin + "/history",
+      origin + "/about",
     );
     const bobAccount = await (await bob.request("/api/account")).json();
     assert.equal(bobAccount.user.name, "GitHub Investigator");
@@ -565,7 +572,7 @@ test("Auth.js Google OIDC and GitHub code flows, sessions, ownership, expiry and
     const external = await start(alice, "google", "https://evil.test/steal");
     assert.equal(
       (await finish(alice, "google", external)).headers.get("location"),
-      origin + "/history",
+      origin + "/about",
     );
     const noCsrf = await alice.request("/api/auth/signout", {
       method: "POST",

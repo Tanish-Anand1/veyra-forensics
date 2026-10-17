@@ -22,6 +22,9 @@ test("real Auth.js browser cookies: signup, save, revisit, delete, logout and re
     page.getByRole("heading", { name: "START WITH THE EVIDENCE." }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Continue with Google" }).click();
+  await expectView(page, "/about");
+  await expect(page.locator(".product-hero")).toBeVisible();
+  await page.locator(".account-link").click();
   await expectView(page, "/history");
   await expect(page.locator(".account-link")).toContainText(
     "Google Investigator",
@@ -90,6 +93,8 @@ test("real Auth.js browser cookies: signup, save, revisit, delete, logout and re
   await page.goto(fixture.origin + "/history");
   await expectView(page, "/login");
   await page.getByRole("button", { name: "Continue with Google" }).click();
+  await expectView(page, "/about");
+  await page.locator(".account-link").click();
   await expectView(page, "/history");
   await expect(page.locator(".account-link")).toContainText(
     "Google Investigator",
@@ -115,7 +120,8 @@ test("GitHub signup, cancellation, provider failure and safe retry", async ({
   );
   await page.goto(fixture.origin + "/signup?next=%2Fanalyze");
   await page.getByRole("button", { name: "Continue with GitHub" }).click();
-  await expectView(page, "/analyze");
+  await expectView(page, "/about");
+  await expect(page.locator(".product-hero")).toBeVisible();
   await expect(page.locator(".account-link")).toContainText(
     "GitHub Investigator",
   );
@@ -133,7 +139,7 @@ test("GitHub signup, cancellation, provider failure and safe retry", async ({
   fixture.state.fail = false;
 
   await page.getByRole("button", { name: "Continue with GitHub" }).click();
-  await expectView(page, "/investigate/import");
+  await expectView(page, "/about");
   expect(
     (await fixture.database.query("SELECT * FROM users")).rows,
   ).toHaveLength(1);
@@ -157,6 +163,8 @@ test("guest report survives OAuth and still requires explicit save confirmation"
     .check();
   await page.getByRole("button", { name: "Sign in and keep report" }).click();
   await page.getByRole("button", { name: "Continue with Google" }).click();
+  await expectView(page, "/about");
+  await page.goto(fixture.origin + "/analyze?resume=1");
   await expectView(page, "/analyze?resume=1");
   await expect(page.locator(".assessment-block h3")).toHaveText(
     "Elevated concern",
@@ -216,6 +224,8 @@ test("authenticated navigation and save controls reflow on narrow screens", asyn
 }) => {
   await page.goto(fixture.origin + "/login?next=%2Fanalyze");
   await page.getByRole("button", { name: "Continue with Google" }).click();
+  await expectView(page, "/about");
+  await page.goto(fixture.origin + "/analyze");
   await expectView(page, "/analyze");
   for (const width of [320, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 900 });

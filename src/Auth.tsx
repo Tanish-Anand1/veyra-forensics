@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState, useRef } from "react";
-import { safeDestination } from "../shared/auth";
+import { signInDestination } from "../shared/auth";
 import Artwork from "./components/Artwork";
 import { Mark } from "./Layout";
 import Opening from "./components/Opening";
@@ -71,12 +71,7 @@ export function AuthPage({
   }, [isOpening, filmReady, finishOpening]);
   const route = useAppLocation();
   const params = new URLSearchParams(route.search);
-  const remembered = readSession("chainbreak-auth-next");
-  let destination =
-    params.get("next") || params.get("callbackUrl") || remembered;
-  if (destination?.startsWith(window.location.origin + "/"))
-    destination = destination.slice(window.location.origin.length);
-  const next = safeDestination(destination || "/investigate/import");
+  const next = signInDestination;
   const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState(() =>
     params.has("error")

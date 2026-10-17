@@ -326,6 +326,10 @@ test("imported report: real Auth.js mock-provider journey, persistence, rename, 
   test.setTimeout(90000);
   await page.goto(fixture.origin + "/login?next=%2Finvestigate%2Fimport");
   await page.getByRole("button", { name: "Continue with Google" }).click();
+  await expectView(page, "/about");
+  await page
+    .getByRole("link", { name: "Upload a conversation", exact: true })
+    .click();
   await expectView(page, "/investigate/import");
   await page.getByLabel("Choose conversation source files").setInputFiles({
     name: "private-generated.txt",
