@@ -16,6 +16,7 @@
     "format:check": "prettier --check api src shared server tests scripts docs package.json tsconfig.json vite.config.ts playwright.config.ts eslint.config.js vercel.json README.md THIRD_PARTY_NOTICES.md",
     "profile": "node scripts/profile.mjs",
     "db:migrate": "node scripts/migrate.mjs",
+    "db:proof": "node scripts/database-proof.mjs",
     "source:package": "node scripts/package-source.mjs",
     "source:check": "node scripts/check-source.mjs"
   },

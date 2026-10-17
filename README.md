@@ -137,6 +137,7 @@ Archivo Black defines the wordmark; Barlow Condensed carries cinematic headings;
 - [Mobile cinematic behavior and verification](docs/MOBILE_CINEMATIC.md)
 - [Conversation import limits and data flow](docs/CONVERSATION_IMPORT.md)
 - [Authentication and private history](docs/AUTHENTICATION.md)
+- [Private database proof workflow](docs/DATABASE_PROOF.md)
 - [Research and evidence boundaries](docs/RESEARCH.md)
 
 Dated release records describe checks performed at that point; they are not guarantees of current field performance or detection accuracy. Physical-phone and human screen-reader acceptance remain separate from browser emulation and automated accessibility checks.

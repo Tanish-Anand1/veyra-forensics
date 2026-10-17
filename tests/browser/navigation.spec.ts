@@ -77,3 +77,46 @@ test("Sources, cyber ethics and footer remain accessible at desktop and mobile w
   await page.keyboard.press("Enter");
   await expectView(page, "/sources");
 });
+
+test("Contact shows four sourced India reporting channels with accessible actions", async ({
+  page,
+}) => {
+  for (const width of [1440, 390, 320]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/contact");
+    await expect(page).toHaveTitle("Contact | VEYRA");
+    await expect(page.locator(".contact-directory article")).toHaveCount(4);
+    await expect(
+      page.getByRole("link", { name: "Call 1930", exact: true }),
+    ).toHaveAttribute("href", "tel:1930");
+    await expect(
+      page.getByRole("link", { name: "Call 112", exact: true }),
+    ).toHaveAttribute("href", "tel:112");
+    await expect(
+      page.getByRole("link", { name: "Open cybercrime.gov.in", exact: true }),
+    ).toHaveAttribute("href", "https://cybercrime.gov.in/");
+    await expect(
+      page.getByRole("link", {
+        name: "Email incident@cert-in.org.in",
+        exact: true,
+      }),
+    ).toHaveAttribute("href", "mailto:incident@cert-in.org.in");
+    await expect(
+      page.getByRole("link", { name: /^Official source:/ }),
+    ).toHaveCount(4);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+    await page.screenshot({
+      path: `artifacts/contact/contact-${width}.png`,
+      fullPage: true,
+    });
+  }
+  expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+  await page.getByRole("link", { name: "Call 1930", exact: true }).focus();
+  await expect(
+    page.getByRole("link", { name: "Call 1930", exact: true }),
+  ).toBeFocused();
+});

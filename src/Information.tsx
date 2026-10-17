@@ -398,6 +398,46 @@ export function Methodology() {
 }
 
 export function ContactPage() {
+  const support = [
+    {
+      name: "Financial cyber fraud",
+      description:
+        "Lost money to an online scam? Report financial cyber fraud promptly through the national helpline.",
+      action: "Call 1930",
+      href: "tel:1930",
+      source:
+        "https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=1814120&lang=2&reg=48",
+      agency: "Ministry of Home Affairs",
+    },
+    {
+      name: "Report a cybercrime",
+      description:
+        "Submit a cybercrime complaint through the Government of India's National Cyber Crime Reporting Portal.",
+      action: "Open cybercrime.gov.in",
+      href: "https://cybercrime.gov.in/",
+      source: "https://cybercrime.gov.in/",
+      agency: "National Cyber Crime Reporting Portal",
+    },
+    {
+      name: "Immediate danger or emergency",
+      description:
+        "For an immediate threat to your safety, or an emergency requiring police, fire or medical assistance.",
+      action: "Call 112",
+      href: "tel:112",
+      source:
+        "https://www.mha.gov.in/en/commoncontent/emergency-response-support-system-erss",
+      agency: "Emergency Response Support System",
+    },
+    {
+      name: "Technical security incidents",
+      description:
+        "Report cybersecurity incidents affecting systems or networks to CERT-In's incident response help desk.",
+      action: "Email incident@cert-in.org.in",
+      href: "mailto:incident@cert-in.org.in",
+      source: "https://www.cert-in.org.in/s2cMainServlet?pageid=CONTACTUS",
+      agency: "Indian Computer Emergency Response Team",
+    },
+  ];
   const candidate = import.meta.env.VITE_CONTACT_EMAIL?.trim();
   const email =
     candidate && /^[^\s<>@]+@[^\s<>@]+\.[^\s<>@]+$/.test(candidate)
@@ -406,16 +446,47 @@ export function ContactPage() {
   return (
     <>
       <Header />
-      <main id="main" className="information">
+      <main id="main" className="information contact-page">
         <span className="mono">CONTACT / VEYRA</span>
         <h1>
-          A question.
+          The right help.
           <br />
-          <em>A conversation.</em>
+          When it matters.
         </h1>
         <p className="information-lead">
-          Report an issue or share feedback about the investigation experience.
+          Official reporting channels for India, alongside a way to share
+          feedback about VEYRA.
         </p>
+        <section className="contact-directory" aria-labelledby="help-title">
+          <h2 id="help-title">Find the right reporting channel</h2>
+          {support.map((contact) => (
+            <article key={contact.href}>
+              <div>
+                <h3>{contact.name}</h3>
+                <p>{contact.description}</p>
+              </div>
+              <div className="contact-channel">
+                <a
+                  className="contact-action"
+                  href={contact.href}
+                  {...(contact.href.startsWith("https:")
+                    ? { target: "_blank", rel: "noreferrer" }
+                    : {})}
+                >
+                  {contact.action}
+                </a>
+                <a href={contact.source} target="_blank" rel="noreferrer">
+                  Official source: {contact.agency}
+                </a>
+              </div>
+            </article>
+          ))}
+          <p className="contact-scope">
+            These services cover India. Elsewhere, use your local emergency or
+            cybercrime reporting service. VEYRA does not receive complaints or
+            provide emergency response. Sources checked on 17 October 2026.
+          </p>
+        </section>
         <div className="information-body">
           <section>
             <h2>Get in touch</h2>

@@ -9,6 +9,8 @@ export default ts.config(
       "test-results/**",
       "playwright-report/**",
       "artifacts/**",
+      "output/**",
+      "tmp/**",
       ".vercel/**",
     ],
   },
